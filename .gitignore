@@ -1,0 +1,4 @@
+.vscode/
+debug/
+*.elf
+*.rpx

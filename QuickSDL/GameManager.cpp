@@ -8,7 +8,7 @@
 #include <time.h>
 
 #ifdef __WIIU__
-#include <whb/proc.h>
+#include "StateUtils.h"
 #endif
 
 //-----------------------------------------------------------
@@ -117,7 +117,7 @@ namespace QuickSDL {
 	void GameManager::Run() {
 
 #ifdef __WIIU__
-		while (!mQuit && WHBProcIsRunning()) {
+		while (!mQuit && State::AppRunning()) {
 #else
 		while (!mQuit) {
 #endif
