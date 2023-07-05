@@ -45,16 +45,17 @@ namespace QuickSDL {
 
 	Graphics::~Graphics() {
 
-		SDL_DestroyWindow(mWindow);
-		mWindow = NULL;
+		//SDL_DestroyRenderer(mRenderer);
+		//mRenderer = NULL;
 
-		SDL_DestroyRenderer(mRenderer);
-		mRenderer = NULL;
+		//SDL_DestroyWindow(mWindow);
+		//mWindow = NULL;
 
 		//Closing all open SDL graphic libraries
-		TTF_Quit();
+		if(TTF_WasInit())
+        	TTF_Quit();
 		IMG_Quit();
-		SDL_Quit();
+		// SDL_Quit();
 	}
 
 	bool Graphics::Init() {
@@ -68,7 +69,7 @@ namespace QuickSDL {
 
 		//Creating the window
 #ifndef USE_SCALING
-		mWindow = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		mWindow = SDL_CreateWindow(NULL, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 0, 0, SDL_WINDOW_FULLSCREEN_DESKTOP);
 #else
 		mWindow = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH * SCALE_RATIO, SCREEN_HEIGHT * SCALE_RATIO, SDL_WINDOW_SHOWN);
 #endif
